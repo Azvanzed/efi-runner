@@ -21,9 +21,9 @@ This has been tested only on windows!
 
 ## How to use
 Requires 3 arguments for it to work which are the following:
-```VMPROJ```: Path to the Virtual Machine folder.
-```DEVICE```: The partition on where the efi will be installed to, make sure its the same one assigned to the VM.
-```EFI```: The EFI that will be ran.
+- ```VMPROJ```: Path to the Virtual Machine folder.
+- ```DEVICE```: The partition on where the efi will be installed to, make sure its the same one assigned to the VM.
+- ```EFI```: The EFI that will be ran.
 
 Example: ```efi-runner.exe C:\VMs\19045.4651 F: application.efi```
 
