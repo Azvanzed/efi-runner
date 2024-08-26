@@ -177,7 +177,7 @@ struct Args {
 
 fn main() -> anything::Result<()> {
     env_logger::builder()
-        .filter_level(log::LevelFilter::Debug)
+        .filter_level(log::LevelFilter::Info)
         .init();
 
     let args = Args::parse();
