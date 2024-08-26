@@ -1,0 +1,13 @@
+[package]
+name = "efi-runner"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anything = { git = "https://github.com/Azvanzed/anything-rs.git" }
+env_logger = "0.11.3"
+log = "0.4.22"
+dunce = "1.0.4"
+ctrlc = "3.4.4"
+clap = "4.5.15"
+clap_derive = "4.5.13"
