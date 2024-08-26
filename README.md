@@ -1,5 +1,6 @@
 # EFI-Runner
 A simple efi runner and message logger for VMWare to make efi development easier.
+This basically saves you time, so instead of spending 2 minutes every time booting into the guest, copying the file, rebooting... this does it under 5 seconds without any interaction!
 
 ## How does it work
 It uses vmrun from vmware to interact with the virtualization interface.
