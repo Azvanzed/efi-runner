@@ -15,10 +15,10 @@ Create a partition with 512MB, follow: https://www.wikihow.com/Create-a-Partitio
 
 ## How to add device to VMWare
 After setting up your Virtual Machine with and created a new partition, do the following to map the partition as a device.
-https://i.imgur.com/ZZgG5Cc.png
-https://i.imgur.com/XwXgBtp.png
-https://i.imgur.com/lBExls6.png
-https://i.imgur.com/fMPy8hv.png
-https://i.imgur.com/EGWD86K.png
-https://i.imgur.com/JrHX3k8.png
+[1](https://i.imgur.com/ZZgG5Cc.png)
+[2](https://i.imgur.com/XwXgBtp.png)
+[3](https://i.imgur.com/lBExls6.png)
+[4](https://i.imgur.com/fMPy8hv.png)
+[5](https://i.imgur.com/EGWD86K.png)
+[6](https://i.imgur.com/JrHX3k8.png)
 
