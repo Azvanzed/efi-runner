@@ -19,6 +19,22 @@ This has been tested only on windows!
 4. Change your boot order so you always boot on the partition, check [How to change boot order](https://github.com/Azvanzed/efi-runner/blob/main/README.md#how-to-change-boot-order).
 5. Now you can run the efi-runner with the settings you want, you could configure it with your IDE so all you have to do is press a run button.
 
+## How to use
+Requires 3 arguments for it to work which are the following:
+```VMPROJ```: Path to the Virtual Machine folder.
+```DEVICE```: The partition on where the efi will be installed to, make sure its the same one assigned to the VM.
+```EFI```: The EFI that will be ran.
+
+Example: ```efi-runner.exe C:\VMs\19045.4651 F: application.efi```
+
+Runners could be use in order for it to execute with a ```cargo run```, just create a .cargo folder in the root folder and inside it a config.toml with the following:
+
+(this is an example, relpace it with your params)
+```
+[target.x86_64-unknown-uefi]
+runner = 'efi-runner.exe C:\VMs\19045.4651 F: '
+```
+
 ### How to create a bootable partition
 Create a partition with 512MB, follow: https://www.wikihow.com/Create-a-Partition
 
