@@ -4,6 +4,8 @@ A simple efi runner and message logger for VMWare to make efi development easier
 ## How does it work
 It uses vmrun from vmware to interact with the virtualization interface.
 
+![In action](https://i.imgur.com/tSwlwik.png)
+
 ## Requirements
 VMWare
 A FAT32 Storage device
