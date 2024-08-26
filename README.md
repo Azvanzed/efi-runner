@@ -35,7 +35,7 @@ After setting up your Virtual Machine with and created a new partition, do the f
 ![Boot into the firmware](https://i.imgur.com/D2a4QPu.png)
 ![Enter into setup](https://i.imgur.com/Ov5VkyG.png)
 ![Go in boot options](https://i.imgur.com/d1ws5H5.png)
-![Go in Change boot order](https://i.imgur.com/d1ws5H5.png)
+![Go in Change boot order](https://i.imgur.com/pENkwii.png)
 ![Change boot order](https://i.imgur.com/FTazE24.png)
 ![Commit](https://i.imgur.com/MNBe8XT.png)
 
