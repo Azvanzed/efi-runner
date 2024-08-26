@@ -14,9 +14,9 @@ This has been tested only on windows!
 ## How to install
 0. Get VMWare and make sure you have vmrun (its located in the VMWare folder) in your PATH.
 1. Create a new Virtual Machine if you didn't have one already.
-2. Create a new partition on a FAT32 device like a USB, check "How to create a partition" section.
-3. Now add that device to vmware, check "How to add device to VMWare" section.
-4. Change your boot order so you always boot on the partition, check "How to change boot order" section.
+2. Create a new partition on a FAT32 device like a USB, check [How to create a partition](https://github.com/Azvanzed/efi-runner/edit/main/README.md#how-to-add-device-to-vmware).
+3. Now add that device to vmware, check [How to add device to VMWare](https://github.com/Azvanzed/efi-runner/edit/main/README.md#how-to-add-device-to-vmware).
+4. Change your boot order so you always boot on the partition, check [How to change boot order](https://github.com/Azvanzed/efi-runner/edit/main/README.md#how-to-add-device-to-vmware).
 5. Now you can run the efi-runner with the settings you want, you could configure it with your IDE so all you have to do is press a run button.
 
 ### How to create a bootable partition
