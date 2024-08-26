@@ -7,8 +7,8 @@ It uses vmrun from vmware to interact with the virtualization interface.
 ![In action](https://i.imgur.com/tSwlwik.png)
 
 ## Requirements
-VMWare
-A FAT32 Storage device
+- VMWare
+- A FAT32 Storage device
 
 ## Warning
 This has been tested only on windows!
