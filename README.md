@@ -38,7 +38,7 @@ runner = 'efi-runner.exe C:\VMs\19045.4651 F: '
 ```
 
 ### How to create a bootable partition
-Create a partition with 512MB, follow: https://www.wikihow.com/Create-a-Partition
+Create a partition with 512MB on the USB Device, follow: https://www.wikihow.com/Create-a-Partition
 
 ### How to add device to VMWare
 After setting up your Virtual Machine with and created a new partition, do the following to map the partition as a device.
