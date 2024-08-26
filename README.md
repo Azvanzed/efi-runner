@@ -17,10 +17,10 @@ Create a partition with 512MB, follow: https://www.wikihow.com/Create-a-Partitio
 
 ## How to add device to VMWare
 After setting up your Virtual Machine with and created a new partition, do the following to map the partition as a device.
-![](https://i.imgur.com/ZZgG5Cc.png)
-![](https://i.imgur.com/XwXgBtp.png)
-![](https://i.imgur.com/lBExls6.png)
-![](https://i.imgur.com/fMPy8hv.png)
-![](https://i.imgur.com/EGWD86K.png)
-![](https://i.imgur.com/JrHX3k8.png)
+![Add hard-disk](https://i.imgur.com/ZZgG5Cc.png)
+![Choose NVME](https://i.imgur.com/XwXgBtp.png)
+![Choose physical disk](https://i.imgur.com/lBExls6.png)
+![Set the correct device and choose use individual partition](https://i.imgur.com/fMPy8hv.png)
+![Select the partition you want to use](https://i.imgur.com/EGWD86K.png)
+![Press finish](https://i.imgur.com/JrHX3k8.png)
 
