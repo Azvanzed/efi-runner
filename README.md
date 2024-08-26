@@ -41,7 +41,7 @@ After setting up your Virtual Machine with and created a new partition, do the f
 
 ## Logging
 Previously, it supported serial logging but it was removed due to it being redundant. 
-Now it uses VMWare backdoor logging.
+Now it uses VMWare backdoor logging; Will soon make a repo for it please be patient!
 
 ## Help
 Open an issue and i'll try my best to help you out.
