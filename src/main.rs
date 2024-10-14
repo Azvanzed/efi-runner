@@ -98,7 +98,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
         }
 
         cursor = reader.get_mut().seek(std::io::SeekFrom::End(0))?;
-        std::thread::sleep(std::time::Duration::from_millis(20));
+        std::thread::sleep(std::time::Duration::from_millis(1));
     }
 
     log::info!("Exited serial loop");
