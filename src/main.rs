@@ -1,16 +1,10 @@
-use std::{
-    path::PathBuf,
-    sync::Arc,
-};
 use std::io::{BufRead, Read, Seek};
+use std::{path::PathBuf, sync::Arc};
 
 use clap::Parser;
 use clap_derive::Parser;
 
-use crate::vmware::{
-    vmrun::VmState,
-    VMWare,
-};
+use crate::vmware::{vmrun::VmState, VMWare};
 
 pub mod vmware;
 
@@ -61,12 +55,30 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
 
     let mut cursor = 0;
     let log_path = project.join("vmware.log");
-    let mut file = std::fs::OpenOptions::new()
-        .read(true)
-        .open(&log_path)?;
+    let mut file = std::fs::OpenOptions::new().read(true).open(&log_path)?;
 
     // read serial output
-    while let Ok(VmState::Running) = vm.state() {
+
+    let mut leave_time = None;
+    loop {
+        match vm.state() {
+            Ok(VmState::Running) => {
+                leave_time = None;
+            }
+            _ => {
+                // Set `leave_time` to 2 seconds from now if not already set
+                leave_time.get_or_insert_with(|| {
+                    std::time::Instant::now() + std::time::Duration::from_secs(2)
+                });
+            }
+        }
+
+        if let Some(t) = leave_time {
+            if std::time::Instant::now() >= t {
+                break;
+            }
+        }
+
         file.seek(std::io::SeekFrom::Start(cursor))?;
 
         let mut reader = std::io::BufReader::new(&file);
@@ -89,7 +101,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
                 "HDAudio",
                 "Balloon",
                 "mks",
-                "VMCI"
+                "VMCI",
             ];
 
             if blacklist.iter().any(|x| line.contains(x)) == false {
@@ -98,7 +110,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
         }
 
         cursor = reader.get_mut().seek(std::io::SeekFrom::End(0))?;
-        std::thread::sleep(std::time::Duration::from_millis(1));
+        std::thread::sleep(std::time::Duration::from_millis(100));
     }
 
     log::info!("Exited serial loop");
