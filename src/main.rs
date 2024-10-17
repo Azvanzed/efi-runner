@@ -102,6 +102,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
                 "Balloon",
                 "mks",
                 "VMCI",
+                "vmx Guest",
             ];
 
             if blacklist.iter().any(|x| line.contains(x)) == false {
