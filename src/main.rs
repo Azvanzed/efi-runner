@@ -106,7 +106,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
             ];
 
             if blacklist.iter().any(|x| line.contains(x)) == false {
-                log::info!("{}", line.replace(" Wa(03)", ""));
+                println!("{}", line.replace(" Wa(03)", ""));
             }
         }
 
