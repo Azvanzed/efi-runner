@@ -1,21 +1,21 @@
-use std::io::{BufRead, Read, Seek};
-use std::{path::PathBuf, sync::Arc};
-
 use clap::Parser;
 use clap_derive::Parser;
+use std::io::{BufRead, Read, Seek};
+use std::path::Path;
+use std::{path::PathBuf, sync::Arc};
 
 use crate::vmware::{vmrun::VmState, VMWare};
 
 pub mod vmware;
 
-fn install_bootx64(root: &PathBuf, source: &PathBuf) -> anything::Result<()> {
+fn install_bootx64(root: &Path, source: &Path) -> anything::Result<()> {
     // check if the path exists
     if !source.exists() {
         return Err(format!("Source {} does not exist", source.to_string_lossy()).into());
     }
 
     // create /efi/boot if it doesn't exist
-    let dest = root.join("/efi/boot");
+    let dest = root.join("efi/boot");
     if !dest.exists() {
         std::fs::create_dir_all(&dest)?;
         log::debug!("Created directory {}", dest.to_string_lossy());
@@ -32,7 +32,7 @@ fn install_bootx64(root: &PathBuf, source: &PathBuf) -> anything::Result<()> {
     Ok(())
 }
 
-fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
+fn serial_loop(vm: &VMWare, project: &Path) -> anything::Result<()> {
     // setup exit handler
     let shared_vm = Arc::new(vm.clone());
 
@@ -105,7 +105,7 @@ fn serial_loop(vm: &VMWare, project: &PathBuf) -> anything::Result<()> {
                 "vmx Guest",
             ];
 
-            if blacklist.iter().any(|x| line.contains(x)) == false {
+            if !blacklist.iter().any(|x| line.contains(x)) {
                 println!("{}", line.replace(" Wa(03)", ""));
             }
         }
@@ -129,6 +129,7 @@ struct RunParams {
     bootx64: String,
     project: String,
     root: String,
+    password: Option<String>,
 }
 
 fn find_vmx(directory: &PathBuf) -> anything::Result<PathBuf> {
@@ -146,12 +147,12 @@ fn find_vmx(directory: &PathBuf) -> anything::Result<PathBuf> {
     vmx.ok_or_else(|| format!("No vmx file found in {}", directory.to_string_lossy()).into())
 }
 
-fn run(params: &RunParams) -> anything::Result<()> {
+fn run(params: RunParams) -> anything::Result<()> {
     let project = dunce::canonicalize(&params.project)?;
     let vmx = find_vmx(&project)?;
     log::debug!("Found VMX file: {}", vmx.to_string_lossy());
 
-    let vm = VMWare::new(&vmx)?;
+    let vm = VMWare::new(&vmx, params.password)?;
 
     log::debug!("Checking VM...");
     if vm.state()? == VmState::Running {
@@ -184,6 +185,9 @@ fn run(params: &RunParams) -> anything::Result<()> {
 #[command(version, about, long_about = None)]
 struct Args {
     vmproj: String,
+
+    #[arg(short = 'p', long = "password")]
+    password: Option<String>,
     device: String,
     efi: String,
 }
@@ -199,9 +203,10 @@ fn main() -> anything::Result<()> {
         bootx64: args.efi,
         project: args.vmproj,
         root: args.device,
+        password: args.password,
     };
 
-    match run(&params) {
+    match run(params) {
         Ok(_) => log::info!("Finished"),
         Err(e) => log::error!("{}", e),
     }
